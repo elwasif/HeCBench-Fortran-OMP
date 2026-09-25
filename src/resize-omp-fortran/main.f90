@@ -1,3 +1,4 @@
+! SPDX-License-Identifier: CC0-1.0
 program resize_benchmark
   use iso_fortran_env, only: int8, int16, int32, int64, real32, real64
   use omp_lib

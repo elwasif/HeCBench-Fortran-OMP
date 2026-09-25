@@ -1,3 +1,4 @@
+! SPDX-License-Identifier: CC0-1.0
 module doh_kernels
   use, intrinsic :: iso_fortran_env, only : real32, real64, int64
   use omp_lib

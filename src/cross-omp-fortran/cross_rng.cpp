@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: CC0-1.0
 #include <random>
 
 extern "C" void fill_cross_inputs_float(int num_elems, float* a, float* b)

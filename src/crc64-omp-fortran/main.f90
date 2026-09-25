@@ -1,3 +1,4 @@
+! SPDX-License-Identifier: CC0-1.0
 module crc64_mod
   use iso_fortran_env, only: int32, int64, real64
   implicit none

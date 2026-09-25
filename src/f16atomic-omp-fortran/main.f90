@@ -1,3 +1,4 @@
+! SPDX-License-Identifier: CC0-1.0
 module f16atomic_mod
   use iso_fortran_env, only: int16, int32, int64, real16, real32, real64
   use omp_lib

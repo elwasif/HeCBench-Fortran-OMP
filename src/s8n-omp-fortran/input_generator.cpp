@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: CC0-1.0
 #include <random>
 
 extern "C" void s8n_fill_input_cpp(int *values, int input_size) {

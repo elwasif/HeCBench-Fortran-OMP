@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: CC0-1.0
 #include <random>
 
 extern "C" void dense_embedding_random_fill(float *dense, float *input,

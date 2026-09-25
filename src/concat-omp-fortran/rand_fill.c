@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: CC0-1.0
 #include <stdlib.h>
 
 int concat_rand_mod(int modulus) {

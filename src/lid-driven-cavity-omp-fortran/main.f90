@@ -1,3 +1,4 @@
+! SPDX-License-Identifier: CC0-1.0
 module lid_driven_cavity_mod
   use omp_lib
   implicit none

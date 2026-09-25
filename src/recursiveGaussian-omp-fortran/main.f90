@@ -1,3 +1,4 @@
+! SPDX-License-Identifier: CC0-1.0
 program recursive_gaussian_omp_fortran
   use, intrinsic :: iso_fortran_env, only: int8, int32, real32, real64
   use omp_lib, only: omp_get_team_num, omp_get_thread_num, omp_get_wtime

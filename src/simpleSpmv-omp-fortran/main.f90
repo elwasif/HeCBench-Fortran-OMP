@@ -1,3 +1,4 @@
+! SPDX-License-Identifier: CC0-1.0
 module simple_spmv_mod
   use iso_c_binding, only: c_double, c_int, c_long
   use iso_fortran_env, only: int64, real32, real64

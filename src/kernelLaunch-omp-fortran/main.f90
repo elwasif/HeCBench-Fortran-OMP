@@ -1,3 +1,4 @@
+! SPDX-License-Identifier: CC0-1.0
 module kernel_launch_kernels
   use, intrinsic :: iso_c_binding, only : c_signed_char
   use omp_lib

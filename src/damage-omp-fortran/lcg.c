@@ -1,3 +1,4 @@
+// SPDX-License-Identifier: CC0-1.0
 #include <stdint.h>
 
 double damage_lcg_random_double(uint64_t *seed)

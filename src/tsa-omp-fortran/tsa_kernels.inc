@@ -1,3 +1,4 @@
+! SPDX-License-Identifier: CC0-1.0
   subroutine pair32(pr, pi, a, b, idx, peer)
     real(real32), intent(inout) :: pr(0:), pi(0:)
     real(real32), intent(in) :: a, b

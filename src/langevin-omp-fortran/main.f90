@@ -1,3 +1,4 @@
+! SPDX-License-Identifier: CC0-1.0
 program langevin_main
   use, intrinsic :: iso_c_binding, only: c_char, c_int, c_null_char
   use, intrinsic :: iso_fortran_env, only: real32

@@ -1,3 +1,4 @@
+! SPDX-License-Identifier: CC0-1.0
 program gaussian_elim
   use iso_fortran_env, only: int64, real32, real64, output_unit
   use omp_lib, only: omp_get_wtime

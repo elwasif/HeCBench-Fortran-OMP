@@ -1,3 +1,4 @@
+! SPDX-License-Identifier: CC0-1.0
 program layout_main
   use, intrinsic :: iso_fortran_env, only : int32, int64, real64
   use omp_lib

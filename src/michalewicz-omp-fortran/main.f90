@@ -1,3 +1,4 @@
+! SPDX-License-Identifier: CC0-1.0
 module michalewicz_mod
   use iso_c_binding, only: c_int, c_ptr, c_size_t, c_loc
   use iso_fortran_env, only: int32, int64, real32, real64

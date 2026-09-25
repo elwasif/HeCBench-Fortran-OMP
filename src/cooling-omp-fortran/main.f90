@@ -1,3 +1,4 @@
+! SPDX-License-Identifier: CC0-1.0
 module cooling_mod
   use, intrinsic :: iso_fortran_env, only : real64
   implicit none

@@ -1,3 +1,4 @@
+! SPDX-License-Identifier: CC0-1.0
 program burger
   use iso_fortran_env, only: real64
   use omp_lib

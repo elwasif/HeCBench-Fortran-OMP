@@ -1,3 +1,4 @@
+! SPDX-License-Identifier: CC0-1.0
 module minmax_types
   use, intrinsic :: iso_fortran_env, only : int64, real32
   implicit none

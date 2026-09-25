@@ -1,3 +1,4 @@
+! SPDX-License-Identifier: CC0-1.0
 program main
   use, intrinsic :: iso_c_binding, only : c_float, c_int, c_long
   use, intrinsic :: iso_fortran_env, only : real32, real64

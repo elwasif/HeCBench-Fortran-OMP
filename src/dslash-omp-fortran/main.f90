@@ -1,3 +1,4 @@
+! SPDX-License-Identifier: CC0-1.0
 program dslash_main
   use iso_c_binding, only: c_double, c_int
   use iso_fortran_env, only: int64, real64, output_unit

@@ -1,3 +1,4 @@
+! SPDX-License-Identifier: CC0-1.0
 program libor_omp_fortran
   use iso_fortran_env, only: real32
   use omp_lib, only: omp_get_wtime

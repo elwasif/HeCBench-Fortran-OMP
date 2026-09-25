@@ -1,3 +1,4 @@
+! SPDX-License-Identifier: CC0-1.0
 #define ROTL32(V,N) ior(ishft((V), (N)), shiftr((V), 32 - (N)))
 #define QR(A,B,C,D) state(A)=add32(state(A),state(B)); tmp=ieor(state(D),state(A)); state(D)=ROTL32(tmp,16); state(C)=add32(state(C),state(D)); tmp=ieor(state(B),state(C)); state(B)=ROTL32(tmp,12); state(A)=add32(state(A),state(B)); tmp=ieor(state(D),state(A)); state(D)=ROTL32(tmp,8); state(C)=add32(state(C),state(D)); tmp=ieor(state(B),state(C)); state(B)=ROTL32(tmp,7)
 

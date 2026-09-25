@@ -1,3 +1,4 @@
+! SPDX-License-Identifier: CC0-1.0
 module perplexity_mod
   use iso_fortran_env, only: real32, real64
   use iso_c_binding, only: c_int

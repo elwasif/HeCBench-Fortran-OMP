@@ -1,3 +1,4 @@
+! SPDX-License-Identifier: CC0-1.0
 program lombscargle_main
   use, intrinsic :: iso_fortran_env, only : real32, real64
   use omp_lib

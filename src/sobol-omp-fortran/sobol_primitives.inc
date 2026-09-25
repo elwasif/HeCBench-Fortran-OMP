@@ -1,3 +1,4 @@
+! SPDX-License-Identifier: CC0-1.0
 ! Mechanically converted from src/sobol-omp/sobol_primitives.cpp.
 degree = 0_int32
 poly_a = 0_int32
