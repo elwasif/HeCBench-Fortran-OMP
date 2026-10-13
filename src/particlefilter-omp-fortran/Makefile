@@ -7,8 +7,8 @@ ARCH      ?= gfx90a
 LAUNCHER  ?=
 
 program = main
-source  = main.f90
-obj     = $(source:.f90=.o)
+source  = main.F90
+obj     = $(source:.F90=.o)
 
 BLOCK_SIZE ?= 256
 FFLAGS := $(EXTRA_FFLAGS) -Wall -cpp -DBLOCK_SIZE=$(BLOCK_SIZE)
@@ -33,7 +33,7 @@ BENCHMARK_ARGS ?= -x 128 -y 128 -z 10 -np 400000
 $(program): $(obj)
 	$(FC) $(FFLAGS) $(obj) -o $@ $(LDFLAGS)
 
-%.o: %.f90
+%.o: %.F90
 	$(FC) $(FFLAGS) -c $< -o $@
 
 clean:
