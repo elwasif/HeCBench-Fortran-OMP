@@ -228,7 +228,7 @@ contains
     round_key(2) = byte_value(bor(shl8(key(9), 5), shr8(key(0), 3)))
     round_key(1) = byte_value(bor(shl8(key(8), 5), shr8(key(9), 3)))
     round_key(0) = byte_value(bor(shl8(key(7), 5), shr8(key(8), 3)))
-    round_key(0) = byte_value(bor(band(byte_index(round_key(0)), z'0F'), byte_index(sbox(shr8(round_key(0), 4)))))
+    round_key(0) = byte_value(bor(band(byte_index(round_key(0)), int(z'0F',int32)), byte_index(sbox(shr8(round_key(0), 4)))))
     round_key(7) = bxor8(round_key(7), byte_value(shr8(byte_value(1), 1)))
     round_key(8) = bxor8(round_key(8), byte_value(shl8(byte_value(1), 7)))
 
@@ -265,22 +265,22 @@ contains
     integer(c_int8_t), intent(in) :: state(0:7)
     integer(c_int8_t), intent(inout) :: cipher(0:7)
 
-    cipher(0) = byte_value(bor(bor(bor(band(byte_index(sbox_pmt_3(byte_index(state(0)))), z'C0'), band(byte_index(sbox_pmt_2(byte_index(state(1)))), z'30')), &
-      band(byte_index(sbox_pmt_1(byte_index(state(2)))), z'0C')), band(byte_index(sbox_pmt_0(byte_index(state(3)))), z'03')))
-    cipher(1) = byte_value(bor(bor(bor(band(byte_index(sbox_pmt_3(byte_index(state(4)))), z'C0'), band(byte_index(sbox_pmt_2(byte_index(state(5)))), z'30')), &
-      band(byte_index(sbox_pmt_1(byte_index(state(6)))), z'0C')), band(byte_index(sbox_pmt_0(byte_index(state(7)))), z'03')))
-    cipher(2) = byte_value(bor(bor(bor(band(byte_index(sbox_pmt_0(byte_index(state(0)))), z'C0'), band(byte_index(sbox_pmt_3(byte_index(state(1)))), z'30')), &
-      band(byte_index(sbox_pmt_2(byte_index(state(2)))), z'0C')), band(byte_index(sbox_pmt_1(byte_index(state(3)))), z'03')))
-    cipher(3) = byte_value(bor(bor(bor(band(byte_index(sbox_pmt_0(byte_index(state(4)))), z'C0'), band(byte_index(sbox_pmt_3(byte_index(state(5)))), z'30')), &
-      band(byte_index(sbox_pmt_2(byte_index(state(6)))), z'0C')), band(byte_index(sbox_pmt_1(byte_index(state(7)))), z'03')))
-    cipher(4) = byte_value(bor(bor(bor(band(byte_index(sbox_pmt_1(byte_index(state(0)))), z'C0'), band(byte_index(sbox_pmt_0(byte_index(state(1)))), z'30')), &
-      band(byte_index(sbox_pmt_3(byte_index(state(2)))), z'0C')), band(byte_index(sbox_pmt_2(byte_index(state(3)))), z'03')))
-    cipher(5) = byte_value(bor(bor(bor(band(byte_index(sbox_pmt_1(byte_index(state(4)))), z'C0'), band(byte_index(sbox_pmt_0(byte_index(state(5)))), z'30')), &
-      band(byte_index(sbox_pmt_3(byte_index(state(6)))), z'0C')), band(byte_index(sbox_pmt_2(byte_index(state(7)))), z'03')))
-    cipher(6) = byte_value(bor(bor(bor(band(byte_index(sbox_pmt_2(byte_index(state(0)))), z'C0'), band(byte_index(sbox_pmt_1(byte_index(state(1)))), z'30')), &
-      band(byte_index(sbox_pmt_0(byte_index(state(2)))), z'0C')), band(byte_index(sbox_pmt_3(byte_index(state(3)))), z'03')))
-    cipher(7) = byte_value(bor(bor(bor(band(byte_index(sbox_pmt_2(byte_index(state(4)))), z'C0'), band(byte_index(sbox_pmt_1(byte_index(state(5)))), z'30')), &
-      band(byte_index(sbox_pmt_0(byte_index(state(6)))), z'0C')), band(byte_index(sbox_pmt_3(byte_index(state(7)))), z'03')))
+    cipher(0) = byte_value(bor(bor(bor(band(byte_index(sbox_pmt_3(byte_index(state(0)))), int(z'C0',int32)), band(byte_index(sbox_pmt_2(byte_index(state(1)))), int(z'30',int32))), &
+      band(byte_index(sbox_pmt_1(byte_index(state(2)))), int(z'0C',int32))), band(byte_index(sbox_pmt_0(byte_index(state(3)))), int(z'03',int32))))
+    cipher(1) = byte_value(bor(bor(bor(band(byte_index(sbox_pmt_3(byte_index(state(4)))), int(z'C0',int32)), band(byte_index(sbox_pmt_2(byte_index(state(5)))), int(z'30',int32))), &
+      band(byte_index(sbox_pmt_1(byte_index(state(6)))), int(z'0C',int32))), band(byte_index(sbox_pmt_0(byte_index(state(7)))), int(z'03',int32))))
+    cipher(2) = byte_value(bor(bor(bor(band(byte_index(sbox_pmt_0(byte_index(state(0)))), int(z'C0',int32)), band(byte_index(sbox_pmt_3(byte_index(state(1)))), int(z'30',int32))), &
+      band(byte_index(sbox_pmt_2(byte_index(state(2)))), int(z'0C',int32))), band(byte_index(sbox_pmt_1(byte_index(state(3)))), int(z'03',int32))))
+    cipher(3) = byte_value(bor(bor(bor(band(byte_index(sbox_pmt_0(byte_index(state(4)))), int(z'C0',int32)), band(byte_index(sbox_pmt_3(byte_index(state(5)))), int(z'30',int32))), &
+      band(byte_index(sbox_pmt_2(byte_index(state(6)))), int(z'0C',int32))), band(byte_index(sbox_pmt_1(byte_index(state(7)))), int(z'03',int32))))
+    cipher(4) = byte_value(bor(bor(bor(band(byte_index(sbox_pmt_1(byte_index(state(0)))), int(z'C0',int32)), band(byte_index(sbox_pmt_0(byte_index(state(1)))), int(z'30',int32))), &
+      band(byte_index(sbox_pmt_3(byte_index(state(2)))), int(z'0C',int32))), band(byte_index(sbox_pmt_2(byte_index(state(3)))), int(z'03',int32))))
+    cipher(5) = byte_value(bor(bor(bor(band(byte_index(sbox_pmt_1(byte_index(state(4)))), int(z'C0',int32)), band(byte_index(sbox_pmt_0(byte_index(state(5)))), int(z'30',int32))), &
+      band(byte_index(sbox_pmt_3(byte_index(state(6)))), int(z'0C',int32))), band(byte_index(sbox_pmt_2(byte_index(state(7)))), int(z'03',int32))))
+    cipher(6) = byte_value(bor(bor(bor(band(byte_index(sbox_pmt_2(byte_index(state(0)))), int(z'C0',int32)), band(byte_index(sbox_pmt_1(byte_index(state(1)))), int(z'30',int32))), &
+      band(byte_index(sbox_pmt_0(byte_index(state(2)))), int(z'0C',int32))), band(byte_index(sbox_pmt_3(byte_index(state(3)))), int(z'03',int32))))
+    cipher(7) = byte_value(bor(bor(bor(band(byte_index(sbox_pmt_2(byte_index(state(4)))), int(z'C0',int32)), band(byte_index(sbox_pmt_1(byte_index(state(5)))), int(z'30',int32))), &
+      band(byte_index(sbox_pmt_0(byte_index(state(6)))), int(z'0C',int32))), band(byte_index(sbox_pmt_3(byte_index(state(7)))), int(z'03',int32))))
   end subroutine substitute_permute
 
   subroutine update_round_key(round_key, scratch, round_counter)
@@ -303,7 +303,7 @@ contains
     round_key(2) = byte_value(bor(shl8(scratch(2), 5), shr8(round_key(0), 3)))
     round_key(1) = byte_value(bor(shl8(scratch(1), 5), shr8(scratch(2), 3)))
     round_key(0) = byte_value(bor(shl8(scratch(0), 5), shr8(scratch(1), 3)))
-    round_key(0) = byte_value(bor(band(byte_index(round_key(0)), z'0F'), byte_index(sbox(shr8(round_key(0), 4)))))
+    round_key(0) = byte_value(bor(band(byte_index(round_key(0)), int(z'0F',int32)), byte_index(sbox(shr8(round_key(0), 4)))))
   end subroutine update_round_key
 
   integer(int32) function byte_index(value) result(unsigned_value)
