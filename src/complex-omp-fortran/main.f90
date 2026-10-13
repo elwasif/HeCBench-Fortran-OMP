@@ -4,13 +4,13 @@ program main
   use omp_lib
   implicit none
 
-  type :: FloatComplex
+  type :: Float_Complex
     real(real32) :: x, y
-  end type FloatComplex
+  end type Float_Complex
 
-  type :: DoubleComplex
+  type :: Double_Complex
     real(real64) :: x, y
-  end type DoubleComplex
+  end type Double_Complex
 
   character(len=256) :: arg0, arg1, arg2
   integer :: n, repeat, iter
@@ -80,13 +80,13 @@ contains
     integer :: i
     integer(int8) :: s
     real(real32) :: r1, r2, r3, r4
-    type(FloatComplex) :: z1, z2
+    type(Float_Complex) :: z1, z2
 
     !$omp target teams distribute parallel do thread_limit(256)
     do i = 1, n
       call random_float4(i - 1, r1, r2, r3, r4)
-      z1 = make_FloatComplex(r1, r2)
-      z2 = make_FloatComplex(r3, r4)
+      z1 = make_Float_Complex(r1, r2)
+      z2 = make_Float_Complex(r3, r4)
 
       s = 0_int8
       if (abs(Cabsf(Cmulf(z1, z2)) - Cabsf(z1) * Cabsf(z2)) < 1.0e-3_real32) s = s + 1_int8
@@ -111,13 +111,13 @@ contains
     integer :: i
     integer(int8) :: s
     real(real64) :: r1, r2, r3, r4
-    type(DoubleComplex) :: z1, z2
+    type(Double_Complex) :: z1, z2
 
     !$omp target teams distribute parallel do thread_limit(256)
     do i = 1, n
       call random_double4(i - 1, r1, r2, r3, r4)
-      z1 = make_DoubleComplex(r1, r2)
-      z2 = make_DoubleComplex(r3, r4)
+      z1 = make_Double_Complex(r1, r2)
+      z2 = make_Double_Complex(r3, r4)
 
       s = 0_int8
       if (abs(Cabs(Cmul(z1, z2)) - Cabs(z1) * Cabs(z2)) < 1.0e-3_real64) s = s + 1_int8
@@ -137,44 +137,44 @@ contains
   end subroutine complex_double
 
   real(real32) function Crealf(x)
-    type(FloatComplex), intent(in) :: x
+    type(Float_Complex), intent(in) :: x
     Crealf = x%x
   end function Crealf
 
   real(real32) function Cimagf(x)
-    type(FloatComplex), intent(in) :: x
+    type(Float_Complex), intent(in) :: x
     Cimagf = x%y
   end function Cimagf
 
-  type(FloatComplex) function make_FloatComplex(r, i)
+  type(Float_Complex) function make_Float_Complex(r, i)
     real(real32), intent(in) :: r, i
-    make_FloatComplex%x = r
-    make_FloatComplex%y = i
-  end function make_FloatComplex
+    make_Float_Complex%x = r
+    make_Float_Complex%y = i
+  end function make_Float_Complex
 
-  type(FloatComplex) function Conjf(x)
-    type(FloatComplex), intent(in) :: x
-    Conjf = make_FloatComplex(Crealf(x), -Cimagf(x))
+  type(Float_Complex) function Conjf(x)
+    type(Float_Complex), intent(in) :: x
+    Conjf = make_Float_Complex(Crealf(x), -Cimagf(x))
   end function Conjf
 
-  type(FloatComplex) function Caddf(x, y)
-    type(FloatComplex), intent(in) :: x, y
-    Caddf = make_FloatComplex(Crealf(x) + Crealf(y), Cimagf(x) + Cimagf(y))
+  type(Float_Complex) function Caddf(x, y)
+    type(Float_Complex), intent(in) :: x, y
+    Caddf = make_Float_Complex(Crealf(x) + Crealf(y), Cimagf(x) + Cimagf(y))
   end function Caddf
 
-  type(FloatComplex) function Csubf(x, y)
-    type(FloatComplex), intent(in) :: x, y
-    Csubf = make_FloatComplex(Crealf(x) - Crealf(y), Cimagf(x) - Cimagf(y))
+  type(Float_Complex) function Csubf(x, y)
+    type(Float_Complex), intent(in) :: x, y
+    Csubf = make_Float_Complex(Crealf(x) - Crealf(y), Cimagf(x) - Cimagf(y))
   end function Csubf
 
-  type(FloatComplex) function Cmulf(x, y)
-    type(FloatComplex), intent(in) :: x, y
-    Cmulf = make_FloatComplex((Crealf(x) * Crealf(y)) - (Cimagf(x) * Cimagf(y)), &
+  type(Float_Complex) function Cmulf(x, y)
+    type(Float_Complex), intent(in) :: x, y
+    Cmulf = make_Float_Complex((Crealf(x) * Crealf(y)) - (Cimagf(x) * Cimagf(y)), &
                               (Crealf(x) * Cimagf(y)) + (Cimagf(x) * Crealf(y)))
   end function Cmulf
 
-  type(FloatComplex) function Cdivf(x, y)
-    type(FloatComplex), intent(in) :: x, y
+  type(Float_Complex) function Cdivf(x, y)
+    type(Float_Complex), intent(in) :: x, y
     real(real32) :: s, oos, ars, ais, brs, bis
 
     s = abs(Crealf(y)) + abs(Cimagf(y))
@@ -185,12 +185,12 @@ contains
     bis = Cimagf(y) * oos
     s = (brs * brs) + (bis * bis)
     oos = 1.0_real32 / s
-    Cdivf = make_FloatComplex(((ars * brs) + (ais * bis)) * oos, &
+    Cdivf = make_Float_Complex(((ars * brs) + (ais * bis)) * oos, &
                               ((ais * brs) - (ars * bis)) * oos)
   end function Cdivf
 
   real(real32) function Cabsf(x)
-    type(FloatComplex), intent(in) :: x
+    type(Float_Complex), intent(in) :: x
     real(real32) :: a, b, v, w, t
 
     a = abs(Crealf(x))
@@ -210,44 +210,44 @@ contains
   end function Cabsf
 
   real(real64) function Creal(x)
-    type(DoubleComplex), intent(in) :: x
+    type(Double_Complex), intent(in) :: x
     Creal = x%x
   end function Creal
 
   real(real64) function Cimag(x)
-    type(DoubleComplex), intent(in) :: x
+    type(Double_Complex), intent(in) :: x
     Cimag = x%y
   end function Cimag
 
-  type(DoubleComplex) function make_DoubleComplex(r, i)
+  type(Double_Complex) function make_Double_Complex(r, i)
     real(real64), intent(in) :: r, i
-    make_DoubleComplex%x = r
-    make_DoubleComplex%y = i
-  end function make_DoubleComplex
+    make_Double_Complex%x = r
+    make_Double_Complex%y = i
+  end function make_Double_Complex
 
-  type(DoubleComplex) function Conj(x)
-    type(DoubleComplex), intent(in) :: x
-    Conj = make_DoubleComplex(Creal(x), -Cimag(x))
+  type(Double_Complex) function Conj(x)
+    type(Double_Complex), intent(in) :: x
+    Conj = make_Double_Complex(Creal(x), -Cimag(x))
   end function Conj
 
-  type(DoubleComplex) function Cadd(x, y)
-    type(DoubleComplex), intent(in) :: x, y
-    Cadd = make_DoubleComplex(Creal(x) + Creal(y), Cimag(x) + Cimag(y))
+  type(Double_Complex) function Cadd(x, y)
+    type(Double_Complex), intent(in) :: x, y
+    Cadd = make_Double_Complex(Creal(x) + Creal(y), Cimag(x) + Cimag(y))
   end function Cadd
 
-  type(DoubleComplex) function Csub(x, y)
-    type(DoubleComplex), intent(in) :: x, y
-    Csub = make_DoubleComplex(Creal(x) - Creal(y), Cimag(x) - Cimag(y))
+  type(Double_Complex) function Csub(x, y)
+    type(Double_Complex), intent(in) :: x, y
+    Csub = make_Double_Complex(Creal(x) - Creal(y), Cimag(x) - Cimag(y))
   end function Csub
 
-  type(DoubleComplex) function Cmul(x, y)
-    type(DoubleComplex), intent(in) :: x, y
-    Cmul = make_DoubleComplex((Creal(x) * Creal(y)) - (Cimag(x) * Cimag(y)), &
+  type(Double_Complex) function Cmul(x, y)
+    type(Double_Complex), intent(in) :: x, y
+    Cmul = make_Double_Complex((Creal(x) * Creal(y)) - (Cimag(x) * Cimag(y)), &
                               (Creal(x) * Cimag(y)) + (Cimag(x) * Creal(y)))
   end function Cmul
 
-  type(DoubleComplex) function Cdiv(x, y)
-    type(DoubleComplex), intent(in) :: x, y
+  type(Double_Complex) function Cdiv(x, y)
+    type(Double_Complex), intent(in) :: x, y
     real(real64) :: s, oos, ars, ais, brs, bis
 
     s = abs(Creal(y)) + abs(Cimag(y))
@@ -258,12 +258,12 @@ contains
     bis = Cimag(y) * oos
     s = (brs * brs) + (bis * bis)
     oos = 1.0_real64 / s
-    Cdiv = make_DoubleComplex(((ars * brs) + (ais * bis)) * oos, &
+    Cdiv = make_Double_Complex(((ars * brs) + (ais * bis)) * oos, &
                               ((ais * brs) - (ars * bis)) * oos)
   end function Cdiv
 
   real(real64) function Cabs(x)
-    type(DoubleComplex), intent(in) :: x
+    type(Double_Complex), intent(in) :: x
     real(real64) :: a, b, v, w, t
 
     a = abs(Creal(x))
