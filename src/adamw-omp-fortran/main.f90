@@ -341,7 +341,7 @@ contains
     end do
   end subroutine reference_kernel
 
-  pure integer function q_index_exp(x, low_arg, high_arg, mid_arg)
+  integer function q_index_exp(x, low_arg, high_arg, mid_arg)
     real(real32), intent(in) :: x
     integer, intent(out), optional :: low_arg, high_arg, mid_arg
     integer :: low, high, mid
@@ -374,7 +374,7 @@ contains
     end if
   end function q_index_exp
 
-  pure integer function q_index_sq(x, low_arg, high_arg, mid_arg)
+  integer function q_index_sq(x, low_arg, high_arg, mid_arg)
     real(real32), intent(in) :: x
     integer, intent(out), optional :: low_arg, high_arg, mid_arg
     integer :: low, high, mid
