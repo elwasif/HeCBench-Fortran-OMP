@@ -73,7 +73,16 @@ contains
     start_time = omp_get_wtime()
     do rep = 1, repeat
       call adjacent_kernel(h_in, h_out, .true., num_items, items_per_block, grid_size)
-      call adjacent_kernel(h_out, h_out, .false., num_items, items_per_block, grid_size)
+      ! Passing the the same actual argument twice is valid in Fortran, unless it is
+      ! target, pointer - or it is either only read or not read but written to. Hence:
+      ! swap h_in and h_out:
+      block
+        integer, allocatable :: tmp(:)
+        call move_alloc (from=h_in, to=tmp)
+        call move_alloc (from=h_out, to=h_in)
+        call move_alloc (from=tmp, to=h_out)
+      end block
+      call adjacent_kernel(h_in, h_out, .false., num_items, items_per_block, grid_size)
     end do
     elapsed = omp_get_wtime() - start_time
     write(*,'(A,I4,A,F0.6,A)') 'Average execution time of the kernels (thread block size = ', &
